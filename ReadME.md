@@ -88,3 +88,42 @@ const parent = React.createElement("div", { id: "parent" }, [
 console.log(parent); //object
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(parent);
+
+# Episode 2
+
+
+
+# parcel 
+ Parcel Features
+
+Dev Build → Provides development builds with fast startup.
+
+Local Server → Runs a local server to preview your app in real time.
+
+HMR (Hot Module Replacement) → Updates only the changed modules in the browser without full reload.
+
+File Watching Algorithm → Written in C++ for high performance.
+
+Caching → Stores previous build outputs for faster rebuilds.
+
+Image Optimization → Handles compression and optimization of images (an expensive operation done efficiently).
+
+Minification → Reduces file size by removing whitespace, comments, and unused code.
+
+Bundling → Combines multiple files/modules into a single bundle for deployment.
+
+Compressing → Shrinks the final bundle size (e.g., gzip, brotli).
+
+Consistent Hashing → Generates stable file hashes for cache-busting.
+
+Code Splitting → Splits code into smaller chunks, loaded only when needed.
+
+Differential Bundling → Generates different bundles for modern and older browsers.
+
+Diagnostics → Provides detailed error messages with code frames and hints.
+
+Error Handling → Friendly error reporting during development.
+ 
+- Tree Shaking 
+
+- Different dev and production bundles
