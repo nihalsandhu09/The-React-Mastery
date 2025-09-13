@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "i am h1 tag"),
-    React.createElement("h2", {}, "i am h2 tag"),
-  ]),
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "i am h1 tag"),
-    React.createElement("h2", {}, "i am h2 tag"),
-  ]),
-]);
-console.log(parent); //object
+
+const title = <h1 className=" heading">Hellow world</h1>;
+console.log(title);
+const number = 100000;
+const Heading = () => {
+  return (
+    <>
+      <div>{title}</div>
+      <h1>Functional Component </h1>
+    </>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(root);
-root.render(parent);
+
+root.render(<Heading />);

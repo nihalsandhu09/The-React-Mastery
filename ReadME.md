@@ -127,3 +127,38 @@ Error Handling → Friendly error reporting during development.
 - Tree Shaking 
 
 - Different dev and production bundles
+
+
+# JSX 
+ * import React from "react";
+import ReactDOM from "react-dom/client";
+
+// React Element = React.createElement => Object => render =>HTMLElEMENT
+
+const heading = React.createElement(
+  "h1",
+  { id: "heading" },
+  "Hello world from react"
+);
+console.log(heading);
+
+// JSX (transpiled before it reaches to js engine) parcel => Babel =>  => React.createElemnt => render => (HTML)
+let h1 = <h1>Hellow world</h1>
+console.log(h1)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(h1);
+ 
+
+ # Components 
+  * // React Components
+// class based component - OLD
+// functional components  - New
+//  functional components are just a js function that return us a some piece of jsx
+function Heading() {
+  return (
+    <>
+      <h1>Functional Component </h1>
+    </>
+  );
+} 
