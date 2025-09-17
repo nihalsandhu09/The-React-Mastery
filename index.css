@@ -35,8 +35,8 @@ ul>li{
     width: 100px;
 }
 
-.search{
-    margin: 10px;
+.filter{
+    margin: 20px;
 }
 .res-card{
     width: 350px;
@@ -66,4 +66,15 @@ ul>li{
     justify-content: center;
    
 }
-
+.filter-btn{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: rgb(247, 131, 89);
+    color: white;
+    font-weight:600;
+}
+.filter-btn:hover{
+    cursor: pointer;
+}

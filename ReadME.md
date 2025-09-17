@@ -162,3 +162,28 @@ function Heading() {
     </>
   );
 } 
+
+
+# Food APP 
+
+
+ - /** we will design first like how our app look like
+ * Header components
+ * -logo
+ * - nav item
+ * - cart
+ * Body Compoennt - serach bar -Restaurant container - Restarant Card
+ *  - img name of res , star rating , cuisine
+ * footer copy right
+ */
+
+
+ Two types of EXPORT/Import 
+
+ Default Export / import 
+ - export default name of component 
+ import variable from path 
+
+ - named export 
+  export const component 
+  import {component} from "path"
