@@ -187,3 +187,11 @@ function Heading() {
  - named export 
   export const component 
   import {component} from "path"
+
+
+
+# React Hooks 
+-  (normal js utilty function written by FB developers )  
+-  Two main Hooks 
+- useState - to superpowerful state  variables in React
+- useEffect 
