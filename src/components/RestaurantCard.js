@@ -18,7 +18,7 @@ const RestaurantCard = (props) => {
           <h4> {deliveryTime} minutes</h4>
         </div>
         <h4 className="cuisines">{cuisines.slice(0, 3).join(",")}</h4>
-        <h4>{locality}</h4>
+        <h4 >{locality}</h4>
       </div>
     </div>
   );
