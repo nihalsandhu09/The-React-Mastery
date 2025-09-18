@@ -48,6 +48,7 @@ ul>li{
 
     padding: 5px;
     box-sizing: border-box;
+      box-shadow: 0 2px px rgba(28, 28, 28, 0.12);
      transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 .res-card:hover{

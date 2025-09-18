@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utilis/constants";
 const RestaurantCard = (props) => {
-  console.log(props);
+  // console.log(props);
   const { name, cuisines, avgRating, costForTwo, cloudinaryImageId, locality } =
     props?.resData?.info;
   const { deliveryTime } = props?.resData?.info?.sla;
@@ -17,8 +17,8 @@ const RestaurantCard = (props) => {
           <h4>{avgRating}⭐</h4>
           <h4> {deliveryTime} minutes</h4>
         </div>
-        <h4 className="cuisines">{cuisines.slice(0, 3).join(",")}</h4>
-        <h4 >{locality}</h4>
+        <h4 className="cuisines">{cuisines.slice(0, 3).join(" , ")}</h4>
+        <h4>{locality}</h4>
       </div>
     </div>
   );
