@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
-
+import Shimmerui from "./Shimmerui";
 const Body = () => {
   const [listofRestaurant, setlistofRestaurants] = useState([]);
 
@@ -8,7 +8,8 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=16&is-seo-homepage-enabled=true&lat=12.9628669&lng=77.57750899999999&carousel=true&third_party_vendor=1"
+      "https://cors-anywhere.herokuapp.com/" +
+        "https://www.swiggy.com/mapi/restaurants/list/v5?offset=16&is-seo-homepage-enabled=true&lat=12.9628669&lng=77.57750899999999&carousel=true&third_party_vendor=1"
     );
     const json = await data.json();
     console.log(json);
@@ -37,7 +38,9 @@ const Body = () => {
     );
     setlistofRestaurants(filtedlist);
   };
-
+  if (listofRestaurant.length === 0) {
+    return <Shimmerui />;
+  }
   return (
     <div className="margin">
       <div className="body ">
