@@ -300,3 +300,8 @@ const Body = () => {
 };
 export default Body;
 
+
+
+ # Two types of routing 
+- client side 
+- server side 
