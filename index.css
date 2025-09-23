@@ -204,3 +204,12 @@ ul>li{
 Link{
   text-decoration: none;
 }
+
+.menu-card{
+  display: flex;
+  
+}
+.menu-card>img{
+  width: 200px;
+  border-radius: 10px;
+}

@@ -1,34 +1,71 @@
 import { useEffect, useState } from "react";
 import Shimmerui from "./Shimmerui";
-
+import { MENU_IMAGE_URL } from "../utilis/constants";
+import { MENU_API_URL } from "../utilis/constants";
+import { useParams } from "react-router-dom";
 const RestaurantMenu = () => {
   const [resinfo, setResInfo] = useState(null);
 
+  const { resId } = useParams();
+  console.log(resId);
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=426776&catalog_qa=undefined&submitAction=ENTER"
+      `${MENU_API_URL}${resId}&catalog_qa=undefined&submitAction=ENTER`
     );
     const json = await data.json();
-
+    console.log(json);
     setResInfo(json.data);
-    console.log(resinfo);
   };
+  const restaurantMenuInfo = resinfo?.cards?.find((c) => c?.card?.card?.info);
+  const { name, cuisines, costForTwo, cloudinaryImageId } =
+    restaurantMenuInfo?.card?.card?.info || {};
+
+  const itemCards =
+    resinfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
+      ?.card?.itemCards || [];
+  const itemCardsTwo =
+    resinfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+      ?.card?.itemCards || [];
+  console.log(itemCards);
+
   return resinfo === null ? (
     <Shimmerui />
   ) : (
-    <div className="">
-      <h1>{resinfo?.cards?.[2]?.card?.card?.info?.name}</h1>
-      <p>{resinfo?.cards?.[2]?.card?.card?.info?.cusines}</p>
-      <ul>
-        <li> {resinfo?.cards?.[2]?.card?.card?.info?.costForTwo / 100} RS </li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
+    <>
+      <div>
+        <h1>{name}</h1>
+        <p>{cuisines.join(",")}</p>
+
+        {itemCards.map((card) => {
+          const { name, price, imageId } = card?.card?.info;
+
+          return (
+            <div className="menu-card" key={card?.card?.info.id}>
+              <p>{name}</p>
+              <p> {price / 100} </p>
+              <img src={MENU_IMAGE_URL + imageId}></img>
+            </div>
+          );
+        })}
+      </div>
+      <div>
+        {itemCardsTwo.map((card) => {
+          const { name, price, imageId } = card?.card?.info;
+
+          return (
+            <div className="menu-card" key={card?.card?.info.id}>
+              <p>{name}</p>
+              <p> {price / 100} </p>
+              <img src={MENU_IMAGE_URL + imageId}></img>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
