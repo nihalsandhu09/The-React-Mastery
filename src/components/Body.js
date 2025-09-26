@@ -92,6 +92,7 @@ const Body = () => {
           {filteredrestaurant.map((restaurant) => {
             return (
               <Link
+                className="link"
                 key={restaurant?.info?.id}
                 to={"/restaurants/" + restaurant?.info?.id}
               >
@@ -101,7 +102,7 @@ const Body = () => {
             );
           })}
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

@@ -44,7 +44,7 @@ ul>li{
 .res-card{
     width: 350px;
     height: 370px;
-    
+    color: black;
 
     padding: 5px;
     box-sizing: border-box;
@@ -67,6 +67,7 @@ ul>li{
 .res-info{
     margin-left: 10px ;
     margin-top: 2px;
+   
 }
 .res-info>h3{
     font-weight: 700;
@@ -201,9 +202,7 @@ ul>li{
 }
 
 
-Link{
-  text-decoration: none;
-}
+
 
 .menu-card{
   display: flex;
@@ -212,4 +211,12 @@ Link{
 .menu-card>img{
   width: 200px;
   border-radius: 10px;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+.user-card{
+  padding: 10px;
+  border: 1px solid black;
 }

@@ -5,11 +5,10 @@ const Header = () => {
   let [btnName, setbtnName] = useState("login");
   const handlebtn = () => {
     btnName === "login" ? setbtnName("logout") : setbtnName("login");
-    console.log(btnName);
   };
-  console.log("header rendered");
+
   useEffect(() => {
-    console.log("useEffect");
+    
   }, []);
   return (
     <div className="margin">
@@ -20,13 +19,19 @@ const Header = () => {
         <div className="nav-items">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link className="link" to="/">
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link className="link" to="/about">
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/contact">Contact Us</Link>
+              <Link className="link" to="/contact">
+                Contact Us
+              </Link>
             </li>
             <li>Cart</li>
             <button className="login" onClick={handlebtn}>
