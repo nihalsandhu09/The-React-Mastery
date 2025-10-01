@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmerui from "./Shimmerui";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utilis/useOnlineStatus";
 const Body = () => {
   const [listofRestaurant, setlistofRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
@@ -47,7 +48,14 @@ const Body = () => {
   };
 
   // conditional rendring rendring on the basis of condition is called conditional rendring
+  const onlineStatus = useOnlineStatus();
 
+  if (onlineStatus === false)
+    return (
+      <h1 style={{ textAlign: "center", marginTop: "100px" }}>
+        Looks like you're offline! Please check your internet connection
+      </h1>
+    );
   return listofRestaurant.length === 0 ? (
     <Shimmerui />
   ) : (

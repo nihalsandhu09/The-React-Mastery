@@ -21,7 +21,6 @@ class About extends Component {
           name={"nihal sandhu (class)"}
           location={"Una Himachal(class) "}
         />
-        <UserClass name={"elon musk(class)"} location={"US(class) "} />
       </div>
     );
   }

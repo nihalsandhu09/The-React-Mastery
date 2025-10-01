@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react";
 import Shimmerui from "./Shimmerui";
 import { MENU_IMAGE_URL } from "../utilis/constants";
-import { MENU_API_URL } from "../utilis/constants";
+
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utilis/useRestaurantMenu";
 const RestaurantMenu = () => {
-  const [resinfo, setResInfo] = useState(null);
-
   const { resId } = useParams();
+  const resinfo = useRestaurantMenu(resId);
   console.log(resId);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
 
-  const fetchMenu = async () => {
-    const data = await fetch(
-      `${MENU_API_URL}${resId}&catalog_qa=undefined&submitAction=ENTER`
-    );
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json.data);
-  };
   const restaurantMenuInfo = resinfo?.cards?.find((c) => c?.card?.card?.info);
   const { name, cuisines, costForTwo, cloudinaryImageId } =
     restaurantMenuInfo?.card?.card?.info || {};

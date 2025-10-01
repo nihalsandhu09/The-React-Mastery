@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { LOGO_URL } from "../utilis/constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utilis/useOnlineStatus";
 const Header = () => {
   let [btnName, setbtnName] = useState("login");
   const handlebtn = () => {
     btnName === "login" ? setbtnName("logout") : setbtnName("login");
   };
-
-  useEffect(() => {
-    
-  }, []);
+  const onlineStatus = useOnlineStatus();
+  useEffect(() => {}, []);
   return (
     <div className="margin">
       <div className="header">
@@ -18,6 +17,7 @@ const Header = () => {
         </div>
         <div className="nav-items">
           <ul>
+            <li>Online Status: {onlineStatus ? "✅" : "⛔"}</li>
             <li>
               <Link className="link" to="/">
                 Home
@@ -31,6 +31,11 @@ const Header = () => {
             <li>
               <Link className="link" to="/contact">
                 Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link className="link" to="/grocery">
+                Grocery
               </Link>
             </li>
             <li>Cart</li>
