@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 const User = (props) => {
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(1);
-useEffect(()=>{
-
-},[])
+  useEffect(() => {}, []);
   return (
     <div className="user-card">
       <h1>Count:{count}</h1>

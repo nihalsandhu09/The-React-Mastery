@@ -59,8 +59,8 @@ const Body = () => {
   return listofRestaurant.length === 0 ? (
     <Shimmerui />
   ) : (
-    <div className="margin">
-      <div className="body ">
+    <div className="margin bg-gray-900">
+      <div className="body bg-gray-900">
         <div className="filter">
           <button className="filter-btn " onClick={filter}>
             {" "}
@@ -96,7 +96,7 @@ const Body = () => {
           </div>
         </div>
 
-        <div className="restaurant-container">
+        <div className="restaurant-container flex gap-8">
           {filteredrestaurant.map((restaurant) => {
             return (
               <Link

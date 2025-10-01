@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
     <>
       <div>
         <h1>{name}</h1>
-        <p>{cuisines.join(",")}</p>
+        <p>{cuisines ? cuisines.join(",") : []}</p>
 
         {itemCards.map((card) => {
           const { name, price, imageId } = card?.card?.info;
