@@ -1,18 +1,20 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmerui from "./Shimmerui";
 import { Link } from "react-router-dom";
+
 import useOnlineStatus from "../utilis/useOnlineStatus";
 const Body = () => {
   const [listofRestaurant, setlistofRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
   const [filteredrestaurant, setfilteredrestaurant] = useState([]);
-  console.log("Body rendered");
+  console.log("Body rendered", listofRestaurant);
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/mapi/restaurants/list/v5?offset=16&is-seo-homepage-enabled=true&lat=12.9628669&lng=77.57750899999999&carousel=true&third_party_vendor=1"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       console.log(json);
@@ -59,17 +61,20 @@ const Body = () => {
   return listofRestaurant.length === 0 ? (
     <Shimmerui />
   ) : (
-    <div className="margin bg-gray-900">
-      <div className="body bg-gray-900">
-        <div className="filter">
-          <button className="filter-btn " onClick={filter}>
+    <div className="margin ">
+      <div className="body">
+        <div className="filter my-3 flex items-center gap-2.5">
+          <button
+            className="filter-btn   bg-blue-200  font-bold   py-2 px-1"
+            onClick={filter}
+          >
             {" "}
             Top Rated Restaurants
           </button>
           <div>
-            <div className="search">
+            <div className="search border-2 px-1 py-1  rounded">
               <input
-                className="searchbox"
+                className="searchbox border-none outline-none"
                 type="text"
                 value={searchText}
                 onChange={(e) => {
@@ -78,7 +83,7 @@ const Body = () => {
                 }}
               />
               <button
-                className="search-btn"
+                className="search-btn bg-blue-500 rounded py-0.5 px-1 font-bold  text-blue-50 "
                 onClick={() => {
                   // filter the restaurant cards and update the ui
                   const filterrestaurant = listofRestaurant.filter(
@@ -96,16 +101,27 @@ const Body = () => {
           </div>
         </div>
 
-        <div className="restaurant-container flex gap-8">
+        <div className="restaurant-container flex flex-wrap gap-5">
           {filteredrestaurant.map((restaurant) => {
+            const promoted =
+              restaurant?.info?.promoted ?? restaurant?.info?.avgRating > 4.5;
             return (
               <Link
                 className="link"
                 key={restaurant?.info?.id}
                 to={"/restaurants/" + restaurant?.info?.id}
               >
-                {" "}
-                <RestaurantCard resData={restaurant} />
+                {/* {" "} if restaurant is promoted add 
+                
+                promted level to it ; */}
+                {promoted ? (
+                  <RestaurantCardPromoted
+                    resData={restaurant}
+                    promoted={promoted}
+                  />
+                ) : (
+                  <RestaurantCard resData={restaurant} promoted={promoted} />
+                )}
               </Link>
             );
           })}

@@ -12,9 +12,15 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwo, cloudinaryImageId } =
     restaurantMenuInfo?.card?.card?.info || {};
 
+  const regularCards = resinfo?.cards?.find(
+    (c) => c?.groupedCard?.cardGroupMap?.REGULAR
+  )?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
   const itemCards =
-    resinfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
-      ?.card?.itemCards || [];
+    regularCards?.find(
+      (c) => c?.card?.card?.itemCards // condition (true if exists)
+    )?.card?.card?.itemCards || [];
+
   const itemCardsTwo =
     resinfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card?.itemCards || [];
@@ -41,7 +47,7 @@ const RestaurantMenu = () => {
         })}
       </div>
       <div>
-        {itemCardsTwo.map((card) => {
+        {/* {itemCardsTwo.map((card) => {
           const { name, price, imageId } = card?.card?.info;
 
           return (
@@ -51,7 +57,7 @@ const RestaurantMenu = () => {
               <img src={MENU_IMAGE_URL + imageId}></img>
             </div>
           );
-        })}
+        })} */}
       </div>
     </>
   );

@@ -11,12 +11,12 @@ const Header = () => {
   useEffect(() => {}, []);
   return (
     <div className="margin">
-      <div className="header">
+      <div className="header flex items-center justify-between">
         <div className="logo-container">
-          <img className="logo" src={LOGO_URL}></img>
+          <img className="logo w-24" src={LOGO_URL}></img>
         </div>
         <div className="nav-items">
-          <ul>
+          <ul className="flex gap-4">
             <li>Online Status: {onlineStatus ? "✅" : "⛔"}</li>
             <li>
               <Link className="link" to="/">
