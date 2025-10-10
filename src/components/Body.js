@@ -1,23 +1,25 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmerui from "./Shimmerui";
 import { Link } from "react-router-dom";
-
+import UserContext from "../utilis/UserContext";
 import useOnlineStatus from "../utilis/useOnlineStatus";
+
 const Body = () => {
   const [listofRestaurant, setlistofRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
   const [filteredrestaurant, setfilteredrestaurant] = useState([]);
-  console.log("Body rendered", listofRestaurant);
+  console.log(listofRestaurant);
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   const fetchData = async () => {
     try {
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
-      console.log(json);
+      // console.log(json);
       const cards = json?.data?.cards || [];
       let restaurantCard;
 
@@ -29,11 +31,11 @@ const Body = () => {
         }
       }
 
-      console.log(restaurantCard);
+      // console.log(restaurantCard);
       setlistofRestaurants(restaurantCard);
       setfilteredrestaurant(restaurantCard);
-    } catch {
-      return <h1>Api call did not work</h1>;
+    } catch (err) {
+      console.error("API error:", err); // better than returning JSX here
     }
   };
 
@@ -49,6 +51,7 @@ const Body = () => {
     setfilteredrestaurant(filtedlist);
   };
 
+  const { setUserName, loggedInUser } = useContext(UserContext);
   // conditional rendring rendring on the basis of condition is called conditional rendring
   const onlineStatus = useOnlineStatus();
 
@@ -98,6 +101,17 @@ const Body = () => {
                 Search
               </button>
             </div>
+          </div>
+          <div>
+            <label>User Name : </label>
+            <input
+              className="border-black outline-2 rounded py-0.5 px-1   "
+              value={loggedInUser}
+              onChange={(e) => {
+                e.preventDefault();
+                setUserName(e.target.value);
+              }}
+            ></input>
           </div>
         </div>
 

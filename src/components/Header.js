@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LOGO_URL } from "../utilis/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utilis/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utilis/UserContext";
 const Header = () => {
   let [btnName, setbtnName] = useState("login");
   const handlebtn = () => {
     btnName === "login" ? setbtnName("logout") : setbtnName("login");
   };
   const onlineStatus = useOnlineStatus();
-  useEffect(() => {}, []);
+  const data = useContext(UserContext);
+  console.log(data);
   return (
     <div className="margin">
       <div className="header flex items-center justify-between">
@@ -42,6 +45,7 @@ const Header = () => {
             <button className="login" onClick={handlebtn}>
               {btnName}
             </button>
+            <li>{data.loggedInUser}</li>
           </ul>
         </div>
       </div>

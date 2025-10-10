@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utilis/constants";
+import UserContext from "../utilis/UserContext";
 const RestaurantCard = (props) => {
   // console.log(props);
+
+  const { loggedInUser } = useContext(UserContext);
   const { name, cuisines, avgRating, costForTwo, cloudinaryImageId, locality } =
     props?.resData?.info;
   const { deliveryTime } = props?.resData?.info?.sla;
@@ -19,6 +23,7 @@ const RestaurantCard = (props) => {
         </div>
         <h4 className="cuisines">{cuisines.slice(0, 3).join(" , ")}</h4>
         <h4>{locality}</h4>
+        <h4>User:{loggedInUser}</h4>
       </div>
     </div>
   );
@@ -32,7 +37,9 @@ export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label className="">Promoted</label>
+        <label className=" absolute bg-black text-white  p-2 rounded-lg">
+          Promoted
+        </label>
         <RestaurantCard {...props} />
       </div>
     );

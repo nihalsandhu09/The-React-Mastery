@@ -8,7 +8,7 @@ const useRestaurantMenu = (resId) => {
       `${MENU_API_URL}${resId}&catalog_qa=undefined&submitAction=ENTER`
     );
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setResInfo(json.data);
   };
   useEffect(() => {
