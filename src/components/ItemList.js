@@ -1,8 +1,15 @@
 import { MENU_IMAGE_URL } from "../utilis/constants";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../utilis/cartSlice";
 const ItemList = ({ items, dummy }) => {
   // console.log(items);
   // console.log(dummy);
+  const dispatch = useDispatch();
+  const handleAddItem = (item) => {
+    // dispatch an action
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => {
@@ -21,7 +28,7 @@ const ItemList = ({ items, dummy }) => {
                     : item.card.info.price / 100}
                 </p>
                 <p className="text-sm my-2 text-yellow-500 font-bold">
-                  ⭐ {item.card.info.ratings.aggregatedRating.rating}
+                  ⭐ {item.card.info.ratings.aggregatedRating.rating || 0}
                   <span className=" text-sm">
                     ({item.card.info.ratings.aggregatedRating.ratingCountV2})
                   </span>
@@ -35,7 +42,10 @@ const ItemList = ({ items, dummy }) => {
                   className="w-42 h-42 rounded-xl object-cover relative"
                   src={MENU_IMAGE_URL + item.card.info.imageId}
                 ></img>
-                <button className=" px-7 py-2 rounded-lg bg-white text-green-700 font-bold shadow-lg absolute  left-9 -bottom-4.5">
+                <button
+                  className=" px-7 py-2 rounded-lg bg-white text-green-700 font-bold shadow-lg absolute  left-9 -bottom-4.5"
+                  onClick={() => handleAddItem(item)}
+                >
                   ADD
                 </button>
               </div>
